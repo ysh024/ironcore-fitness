@@ -1,16 +1,29 @@
 'use client';
 
-import React from 'react';
-import { Check, Sparkles, Flame, ShieldCheck } from 'lucide-react';
+import React, { useState } from 'react';
+import { Check, Sparkles, Flame, ShieldCheck, CreditCard, ArrowRight } from 'lucide-react';
 import { MEMBERSHIP_TIERS } from '../data/gymData';
 import { MembershipTier } from '../types';
-import PaymentButton from './PaymentButton';
+import { PaymentModal } from './PaymentModal';
 
 interface PricingProps {
   onOpenBookingModal: (planName?: string) => void;
 }
 
 export const Pricing: React.FC<PricingProps> = ({ onOpenBookingModal }) => {
+  const [selectedPlanForPayment, setSelectedPlanForPayment] = useState<MembershipTier | null>(null);
+  const [isPaymentModalOpen, setIsPaymentModalOpen] = useState(false);
+
+  const handleOpenPayment = (tier: MembershipTier) => {
+    setSelectedPlanForPayment(tier);
+    setIsPaymentModalOpen(true);
+  };
+
+  const handleClosePayment = () => {
+    setIsPaymentModalOpen(false);
+    setSelectedPlanForPayment(null);
+  };
+
   return (
     <section id="pricing" className="py-24 relative overflow-hidden bg-[#080c14]">
       {/* Glow background accent */}
@@ -93,20 +106,21 @@ export const Pricing: React.FC<PricingProps> = ({ onOpenBookingModal }) => {
                   </ul>
                 </div>
 
-                {/* Card CTA: Razorpay Payment & Free Trial Option */}
+                {/* Card CTA Actions */}
                 <div className="space-y-2.5">
-                  <PaymentButton
-                    amount={tier.priceINR}
-                    planName={`IronCore ${tier.name} Plan`}
-                    buttonText={`Pay ₹${tier.priceINR.toLocaleString('en-IN')} Online`}
-                    className="w-full text-xs py-3 rounded-2xl uppercase tracking-wider"
-                  />
+                  <button
+                    onClick={() => handleOpenPayment(tier)}
+                    className="glow-button group w-full inline-flex items-center justify-center gap-2 rounded-xl px-4 py-3.5 text-xs font-bold text-white uppercase tracking-wider shadow-lg transition-all duration-300 hover:scale-[1.02] active:scale-[0.98] cursor-pointer"
+                  >
+                    <CreditCard className="h-4 w-4 transition-transform group-hover:scale-110" />
+                    <span>Pay ₹{tier.priceINR.toLocaleString('en-IN')} Online</span>
+                  </button>
 
                   <button
                     onClick={() => onOpenBookingModal(tier.name)}
-                    className="w-full py-2 text-[11px] font-bold text-gray-400 hover:text-white transition-colors cursor-pointer text-center underline"
+                    className="w-full py-2 text-[11px] font-bold text-gray-400 hover:text-white transition-colors cursor-pointer text-center underline flex items-center justify-center gap-1"
                   >
-                    Or Book Free 3-Day Trial Pass
+                    Or Book Free 3-Day Trial Pass <ArrowRight className="w-3 h-3 inline" />
                   </button>
 
                   <p className="text-[10px] text-gray-400 text-center flex items-center justify-center gap-1 font-bold pt-1">
@@ -131,6 +145,13 @@ export const Pricing: React.FC<PricingProps> = ({ onOpenBookingModal }) => {
         </div>
 
       </div>
+
+      {/* SINGLE SHARED PAYMENT MODAL (Prevents any duplicate popups or modal conflicts) */}
+      <PaymentModal
+        isOpen={isPaymentModalOpen}
+        onClose={handleClosePayment}
+        initialPlan={selectedPlanForPayment}
+      />
     </section>
   );
 };
