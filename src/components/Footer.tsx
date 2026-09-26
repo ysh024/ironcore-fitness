@@ -26,11 +26,11 @@ export const Footer: React.FC<FooterProps> = ({ onOpenBookingModal }) => {
               </span>
             </div>
 
-            <p className="text-xs leading-relaxed text-gray-400 max-w-sm">
-              Premier 10,000 sq.ft fitness facility located in Indirapuram, Ghaziabad. Offering biomechanic strength equipment, certified personal training, steam baths, and group HIIT classes.
+            <p className="text-xs leading-relaxed text-gray-300 max-w-sm font-normal">
+              Top 10,000 sq.ft gym in Ghaziabad (Indirapuram, Raj Nagar Extension & Vaishali). Featuring imported strength equipment, certified personal trainers, clean steam bath, and group workout classes.
             </p>
 
-            {/* Social SVGs */}
+            {/* Social Links */}
             <div className="flex items-center gap-3 pt-2 text-white">
               <a
                 href="https://instagram.com"
@@ -68,15 +68,15 @@ export const Footer: React.FC<FooterProps> = ({ onOpenBookingModal }) => {
             </div>
           </div>
 
-          {/* Col 3: Localities Served */}
+          {/* Col 3: 3 Ghaziabad Branches */}
           <div className="space-y-3">
             <h4 className="text-sm font-bold text-white uppercase tracking-wider font-[family-name:var(--font-montserrat)]">
-              Ghaziabad Localities
+              Our 3 Branches
             </h4>
             <ul className="space-y-2 text-xs">
               {LOCALITIES.map((loc) => (
-                <li key={loc} className="flex items-center gap-1.5 hover:text-[#ff3b00] transition-colors">
-                  <MapPin className="w-3 h-3 text-[#ff3b00]" /> {loc} Branch Area
+                <li key={loc} className="flex items-center gap-1.5 font-medium text-gray-300 hover:text-[#ff3b00] transition-colors">
+                  <MapPin className="w-3 h-3 text-[#ff3b00]" /> {loc} Gym Branch
                 </li>
               ))}
             </ul>
@@ -88,8 +88,8 @@ export const Footer: React.FC<FooterProps> = ({ onOpenBookingModal }) => {
               Quick Links
             </h4>
             <ul className="space-y-2 text-xs">
-              <li><a href="#features" className="hover:text-[#ff3b00] transition-colors">Amenities & Equipment</a></li>
-              <li><a href="#schedule" className="hover:text-[#ff3b00] transition-colors">Class Timetable</a></li>
+              <li><a href="#features" className="hover:text-[#ff3b00] transition-colors">Gym Amenities</a></li>
+              <li><a href="#schedule" className="hover:text-[#ff3b00] transition-colors">Daily Timetable</a></li>
               <li><a href="#pricing" className="hover:text-[#ff3b00] transition-colors">Membership Pricing (₹)</a></li>
               <li><a href="#trainers" className="hover:text-[#ff3b00] transition-colors">Certified Trainers</a></li>
               <li><a href="#transformations" className="hover:text-[#ff3b00] transition-colors">Member Success Stories</a></li>
@@ -99,11 +99,11 @@ export const Footer: React.FC<FooterProps> = ({ onOpenBookingModal }) => {
           {/* Col 5: Direct Hotline */}
           <div className="space-y-4">
             <h4 className="text-sm font-bold text-white uppercase tracking-wider font-[family-name:var(--font-montserrat)]">
-              Desk Contact
+              Gym Desk Contact
             </h4>
             <div className="space-y-2 text-xs">
-              <a href="tel:+919876543210" className="flex items-center gap-2 text-white font-bold hover:text-[#ff3b00]">
-                <Phone className="w-4 h-4 text-[#ff3b00]" /> +91 98765 43210
+              <a href="tel:+919718871979" className="flex items-center gap-2 text-white font-extrabold text-sm hover:text-[#ff3b00]">
+                <Phone className="w-4 h-4 text-[#ff3b00]" /> +91 9718871979
               </a>
               <a href="mailto:indirapuram@ironcorefitness.in" className="flex items-center gap-2 hover:text-white">
                 <Mail className="w-4 h-4 text-gray-400" /> indirapuram@ironcorefitness.in
@@ -111,7 +111,7 @@ export const Footer: React.FC<FooterProps> = ({ onOpenBookingModal }) => {
             </div>
             <button
               onClick={onOpenBookingModal}
-              className="w-full glow-button py-2.5 rounded-xl text-white font-extrabold text-xs uppercase tracking-wider"
+              className="w-full glow-button py-2.5 rounded-xl text-white font-extrabold text-xs uppercase tracking-wider cursor-pointer"
             >
               Get Free 3-Day Pass
             </button>
@@ -131,3 +131,4 @@ export const Footer: React.FC<FooterProps> = ({ onOpenBookingModal }) => {
     </footer>
   );
 };
+

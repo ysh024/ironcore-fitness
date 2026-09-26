@@ -62,7 +62,7 @@ export default function RootLayout({
     '@type': 'HealthClub',
     'name': 'IronCore Fitness Gym Ghaziabad',
     'image': 'https://ironcorefitness.in/images/ironcore_hero.jpg',
-    'telephone': '+91-9876543210',
+    'telephone': '+91-9718871979',
     'priceRange': '₹₹',
     'address': {
       '@type': 'PostalAddress',

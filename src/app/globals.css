@@ -12,7 +12,8 @@
 }
 
 html {
-  scroll-behavior: smooth;
+  scroll-behavior: smooth !important;
+  scroll-padding-top: 90px;
   font-family: var(--font-inter), system-ui, sans-serif;
   background-color: var(--background);
   color: var(--foreground);
@@ -28,37 +29,48 @@ body {
   background-attachment: fixed;
 }
 
+/* Universal Smooth Micro-Interactions */
+a, button, input, select, textarea, .glass-card, .glass-panel {
+  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter;
+  transition-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+  transition-duration: 300ms;
+}
+
 /* Custom Utilities & Glassmorphism */
 .glass-panel {
   background: rgba(15, 23, 42, 0.75);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
   border: 1px solid rgba(255, 255, 255, 0.08);
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .glass-card {
   background: linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.01) 100%);
-  backdrop-filter: blur(12px);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
   border: 1px solid rgba(255, 255, 255, 0.08);
   box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
-  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.4s ease, box-shadow 0.4s ease;
 }
 
 .glass-card:hover {
-  border-color: rgba(255, 59, 0, 0.4);
-  transform: translateY(-4px);
-  box-shadow: 0 12px 40px 0 rgba(255, 59, 0, 0.15);
+  border-color: rgba(255, 59, 0, 0.5);
+  transform: translateY(-6px) scale(1.01);
+  box-shadow: 0 20px 40px -10px rgba(255, 59, 0, 0.2), 0 0 20px 0 rgba(255, 59, 0, 0.1);
 }
 
 .text-gradient {
   background: linear-gradient(135deg, #ffffff 30%, #ff3b00 100%);
   -webkit-background-clip: text;
+  background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
 .text-gradient-fiery {
   background: linear-gradient(135deg, #ff7e40 0%, #ff3b00 50%, #dc2626 100%);
   -webkit-background-clip: text;
+  background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
@@ -68,18 +80,49 @@ body {
 
 .glow-button {
   position: relative;
+  overflow: hidden;
   background: linear-gradient(135deg, #ff3b00 0%, #d92d00 100%);
   box-shadow: 0 4px 20px rgba(255, 59, 0, 0.4);
-  transition: all 0.3s ease;
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.glow-button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+  transition: left 0.6s ease;
+}
+
+.glow-button:hover::before {
+  left: 100%;
 }
 
 .glow-button:hover {
-  box-shadow: 0 6px 30px rgba(255, 59, 0, 0.65);
-  transform: translateY(-2px);
+  box-shadow: 0 8px 32px rgba(255, 59, 0, 0.7);
+  transform: translateY(-3px) scale(1.02);
 }
 
 .glow-button:active {
-  transform: translateY(0);
+  transform: translateY(-1px) scale(0.98);
+}
+
+/* Micro Interactive Animations */
+.hover-lift {
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.hover-lift:hover {
+  transform: translateY(-4px);
+}
+
+.hover-scale {
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.hover-scale:hover {
+  transform: scale(1.05);
 }
 
 /* Pulse Keyframes for floating WhatsApp & CTAs */
@@ -106,7 +149,9 @@ body {
 ::-webkit-scrollbar-thumb {
   background: #242d3d;
   border-radius: 4px;
+  transition: background 0.3s ease;
 }
 ::-webkit-scrollbar-thumb:hover {
   background: #ff3b00;
 }
+

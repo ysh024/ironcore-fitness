@@ -6,9 +6,9 @@ import { MessageCircle, Flame } from 'lucide-react';
 export const FloatingWhatsApp: React.FC = () => {
   const handleWhatsAppClick = () => {
     const text = encodeURIComponent(
-      "Hi IronCore Fitness Ghaziabad! 👋 I'm interested in booking a Free 3-Day Trial Pass and getting membership details."
+      "Hi IronCore Gym Ghaziabad! 👋 I want to book my Free 3-Day Trial Pass and know more about membership fees."
     );
-    window.open(`https://wa.me/919876543210?text=${text}`, '_blank');
+    window.open(`https://wa.me/919718871979?text=${text}`, '_blank');
   };
 
   return (
@@ -16,7 +16,7 @@ export const FloatingWhatsApp: React.FC = () => {
       {/* Floating Tooltip */}
       <div className="hidden sm:flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-black/80 backdrop-blur-md border border-white/15 text-[11px] font-bold text-white shadow-xl animate-bounce">
         <Flame className="w-3.5 h-3.5 text-yellow-300" />
-        Instant WhatsApp Desk
+        WhatsApp Desk (9718871979)
       </div>
 
       {/* WhatsApp Button */}
@@ -30,3 +30,4 @@ export const FloatingWhatsApp: React.FC = () => {
     </div>
   );
 };
+
