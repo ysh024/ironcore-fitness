@@ -1,0 +1,6 @@
+# Robots.txt for IronCore Fitness Ghaziabad
+User-agent: *
+Allow: /
+Disallow: /api/
+
+Sitemap: https://ironcorefitness.in/sitemap.xml
